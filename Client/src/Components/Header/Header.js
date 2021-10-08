@@ -1,7 +1,7 @@
-import FileBase64 from 'react-file-base64';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import CloudUpload from '@material-ui/icons/CloudUpload';
 import Auth from '../../Auth/Auth'
 import styles from './header.module.css';
 import {useHistory} from 'react-router-dom'
@@ -18,25 +18,41 @@ const history=useHistory()
         })
     }
 
+    const getBase64 = () => {
+        var file = document.querySelector('#file').files[0];
+        const base64 = new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+        });
+        base64.then(data => postImage(data))
+      }
+      
+
     return (
         <div className={styles.header}>
-            <div>
-            <span>
-            <form id="fileUpload">
-                <FileBase64  type="file" multiple={false} onDone={({ base64 }) => {postImage(base64)}}/>
-            </form></span>
-            <span><ChatBubbleOutlineIcon/> </span>
-            <span><DoubleArrowIcon /></span>
+            <div className={styles.leftItem}>
+                <label htmlFor="fileUpload">
+                    <CloudUpload/>
+                    <input id="fileUpload" type='file' onChange={() => getBase64()}/>
+                </label>
+                <ChatBubbleOutlineIcon/>
+                <DoubleArrowIcon />
             </div>
-            <div className={styles.title}>
-                <span>Design Demo 2</span>
-                <span><select></select></span>
+            <div className={styles.centerItem}>
+                <select>
+                    <option value="Design Demo 2">Design Demo 1</option>
+                    <option selected="selected" value="Design Demo 2">Design Demo 2</option>
+                    <option value="Design Demo 2">Design Demo 3</option>
+                    <option value="Design Demo 2">Design Demo 4</option>
+                </select>
                 <span >View only</span>
             </div>
-            <div className={styles.left}>
+            <div className={styles.rightItem}>
                 <span>Share</span>
                 <span ><ArrowRightIcon/></span>
-                <Button color='Secondary' variant='contained' onClick={logout}>LOGOUT</Button>
+                <span><Button color='Secondary' variant='contained' onClick={logout}>LOGOUT</Button></span>
             </div>
 
         </div>
