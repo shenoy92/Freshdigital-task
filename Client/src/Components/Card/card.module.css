@@ -1,0 +1,32 @@
+.card {
+    margin: 0 auto;
+    border: 1px solid;
+    padding: 30px 30px 10px 30px;
+    display: flex;
+    margin-bottom: 15px;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+.card img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.card button {
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.card button img {
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,15 @@
+.loginRegisterContainer  {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    justify-content: center;
+    height: 100vh;
+}
+
+.loginRegisterContainer .submit {
+    margin-top: 15px;
+}
+
+.loginRegisterContainer h1 {
+    margin-bottom: 10px;
+}
